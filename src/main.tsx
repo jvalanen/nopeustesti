@@ -7,6 +7,7 @@ export enum GameButtonColor {
   Blue = "blue",
   Green = "green",
   Yellow = "yellow",
+  // Purple = "purple",
 }
 
 export type TickEvent = CustomEvent<{
@@ -27,16 +28,21 @@ const pickNextColor = (prevColor: GameButtonColor) => {
 };
 
 const sendTick = (prevColor: GameButtonColor) => {
+  const nextColor = pickNextColor(prevColor);
+  const tick: TickEvent = new CustomEvent("tick", {
+    detail: { color: nextColor },
+  });
+  document.dispatchEvent(tick);
+  return nextColor;
+};
+
+const scheduleTick = (prevColor: GameButtonColor) => {
   setTimeout(() => {
-    const nextColor = pickNextColor(prevColor);
-    const tick: TickEvent = new CustomEvent("tick", {
-      detail: { color: nextColor },
-    });
-    document.dispatchEvent(tick);
-    sendTick(nextColor);
+    const nextColor = sendTick(prevColor);
+    scheduleTick(nextColor);
   }, 1000);
 };
 
-sendTick(pickRandomColor(Object.values(GameButtonColor)));
+scheduleTick(pickRandomColor(Object.values(GameButtonColor)));
 
 ReactDOM.createRoot(document.getElementById("root")!).render(<App />);
