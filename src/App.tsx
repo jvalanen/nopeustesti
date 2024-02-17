@@ -5,7 +5,7 @@ import { GameButtonColor, TickEvent } from "./main.tsx";
 
 function App() {
   const [playQueue, setPlayQueue]: [GameButtonColor[], Function] = useState([]);
-  const [lightedUp, setLightedUp] = useState(GameButtonColor.Red);
+  const [lightedUp, setLightedUp] = useState(null);
 
   const handleTick = useCallback((event: TickEvent) => {
     setPlayQueue((prevPlayQueue: GameButtonColor[]) => {
@@ -30,22 +30,16 @@ function App() {
   return (
     <>
       <div>PlayQueue: {playQueue.length}</div>
-      <GameButton
-        lightedUp={lightedUp == GameButtonColor.Red}
-        color={GameButtonColor.Red}
-      />
-      <GameButton
-        lightedUp={lightedUp == GameButtonColor.Blue}
-        color={GameButtonColor.Blue}
-      />
-      <GameButton
-        lightedUp={lightedUp == GameButtonColor.Green}
-        color={GameButtonColor.Green}
-      />
-      <GameButton
-        lightedUp={lightedUp == GameButtonColor.Yellow}
-        color={GameButtonColor.Yellow}
-      />
+
+      {/* Render buttons */}
+      {Object.values(GameButtonColor).map((buttonColor) => {
+        return (
+          <GameButton
+            lightedUp={lightedUp == buttonColor}
+            color={buttonColor}
+          />
+        );
+      })}
     </>
   );
 }
