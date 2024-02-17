@@ -5,7 +5,7 @@ import { GameButtonColor, TickEvent } from "./main.tsx";
 
 function App() {
   const [playQueue, setPlayQueue]: [GameButtonColor[], Function] = useState([]);
-  const [lightedUp, setLightedUp] = useState(null);
+  const [lightedUp, setLightedUp] = useState(Object.values(GameButtonColor)[0]);
 
   const handleTick = useCallback((event: TickEvent) => {
     setPlayQueue((prevPlayQueue: GameButtonColor[]) => {
