@@ -1,16 +1,9 @@
-import { useEffect, useState } from "react";
 import "./GameButton.css";
-
-export enum ColorEnum {
-  Red = "red",
-  Blue = "blue",
-  Green = "green",
-  Yellow = "yellow",
-}
+import { GameButtonColor } from "./main";
 
 interface GameButtonProps {
   lightedUp: boolean;
-  color: string;
+  color: GameButtonColor;
 }
 
 function GameButton({ lightedUp, color }: GameButtonProps) {

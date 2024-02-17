@@ -1,17 +1,42 @@
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
-import { ColorEnum } from "./GameButton.tsx";
 
-const tick = new CustomEvent("tick", { detail: { color: ColorEnum.Blue } });
+export enum GameButtonColor {
+  Red = "red",
+  Blue = "blue",
+  Green = "green",
+  Yellow = "yellow",
+}
 
-const sendTick = () => {
-  setTimeout(() => {
-    document.dispatchEvent(tick);
-    sendTick();
-  }, 500);
+export type TickEvent = CustomEvent<{
+  color: GameButtonColor;
+}>;
+
+const pickRandomColor = (colors: GameButtonColor[]) => {
+  return colors[Math.floor(Math.random() * 1000) % colors.length];
 };
 
-sendTick();
+const pickNextColor = (prevColor: GameButtonColor) => {
+  // Prevent picking the same color again
+  const nonSameColors = Object.values(GameButtonColor).filter((color) => {
+    return color !== prevColor;
+  });
+  // Randomly pick one
+  return pickRandomColor(nonSameColors);
+};
+
+const sendTick = (prevColor: GameButtonColor) => {
+  setTimeout(() => {
+    const nextColor = pickNextColor(prevColor);
+    const tick: TickEvent = new CustomEvent("tick", {
+      detail: { color: nextColor },
+    });
+    document.dispatchEvent(tick);
+    sendTick(nextColor);
+  }, 1000);
+};
+
+sendTick(pickRandomColor(Object.values(GameButtonColor)));
 
 ReactDOM.createRoot(document.getElementById("root")!).render(<App />);

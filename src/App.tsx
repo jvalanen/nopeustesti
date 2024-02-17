@@ -1,27 +1,14 @@
 import { useCallback, useEffect, useState } from "react";
 import "./App.css";
-import GameButton, { ColorEnum } from "./GameButton";
+import GameButton from "./GameButton";
+import { GameButtonColor, TickEvent } from "./main.tsx";
 
 function App() {
-  const [playQueue, setPlayQueue]: [any, any] = useState([]);
-  const [lightedUp, setLightedUp] = useState(ColorEnum.Red);
+  const [playQueue, setPlayQueue]: [GameButtonColor[], Function] = useState([]);
+  const [lightedUp, setLightedUp] = useState(GameButtonColor.Red);
 
-  const colors = [
-    ColorEnum.Red,
-    ColorEnum.Blue,
-    ColorEnum.Green,
-    ColorEnum.Yellow,
-  ];
-
-  useEffect(() => {
-    const nonLightedUpColors = colors.filter((color) => {
-      return color !== lightedUp;
-    });
-    setLightedUp(nonLightedUpColors[Math.floor(Math.random() * 100) % 3]);
-  }, [playQueue]);
-
-  const handleTick = useCallback((event: any) => {
-    setPlayQueue((prevPlayQueue: any) => {
+  const handleTick = useCallback((event: TickEvent) => {
+    setPlayQueue((prevPlayQueue: GameButtonColor[]) => {
       const playQueue = [...prevPlayQueue];
       playQueue.push(event.detail.color);
       return playQueue;
@@ -29,10 +16,14 @@ function App() {
   }, []);
 
   useEffect(() => {
-    document.addEventListener("tick", handleTick);
+    setLightedUp(playQueue[playQueue.length - 1]);
+  }, [playQueue]);
+
+  useEffect(() => {
+    document.addEventListener("tick", handleTick as any);
 
     return () => {
-      document.removeEventListener("tick", handleTick);
+      document.removeEventListener("tick", handleTick as any);
     };
   }, [handleTick]);
 
@@ -40,20 +31,20 @@ function App() {
     <>
       <div>PlayQueue: {playQueue.length}</div>
       <GameButton
-        lightedUp={lightedUp == ColorEnum.Red}
-        color={ColorEnum.Red}
+        lightedUp={lightedUp == GameButtonColor.Red}
+        color={GameButtonColor.Red}
       />
       <GameButton
-        lightedUp={lightedUp == ColorEnum.Blue}
-        color={ColorEnum.Blue}
+        lightedUp={lightedUp == GameButtonColor.Blue}
+        color={GameButtonColor.Blue}
       />
       <GameButton
-        lightedUp={lightedUp == ColorEnum.Green}
-        color={ColorEnum.Green}
+        lightedUp={lightedUp == GameButtonColor.Green}
+        color={GameButtonColor.Green}
       />
       <GameButton
-        lightedUp={lightedUp == ColorEnum.Yellow}
-        color={ColorEnum.Yellow}
+        lightedUp={lightedUp == GameButtonColor.Yellow}
+        color={GameButtonColor.Yellow}
       />
     </>
   );
