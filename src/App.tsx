@@ -3,7 +3,7 @@ import "./App.css";
 import GameButton, { ColorEnum } from "./GameButton";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [playQueue, setPlayQueue]: [any, any] = useState([]);
   const [lightedUp, setLightedUp] = useState(ColorEnum.Red);
 
   const colors = [
@@ -18,10 +18,14 @@ function App() {
       return color !== lightedUp;
     });
     setLightedUp(nonLightedUpColors[Math.floor(Math.random() * 100) % 3]);
-  }, [count]);
+  }, [playQueue]);
 
-  const handleTick = useCallback(() => {
-    setCount((prevCount) => prevCount + 1);
+  const handleTick = useCallback((event: any) => {
+    setPlayQueue((prevPlayQueue: any) => {
+      const playQueue = [...prevPlayQueue];
+      playQueue.push(event.detail.color);
+      return playQueue;
+    });
   }, []);
 
   useEffect(() => {
@@ -34,7 +38,7 @@ function App() {
 
   return (
     <>
-      <div>Jess {count}</div>
+      <div>PlayQueue: {playQueue.length}</div>
       <GameButton
         lightedUp={lightedUp == ColorEnum.Red}
         color={ColorEnum.Red}
