@@ -27,6 +27,21 @@ const CircleButton = styled.button<CircleButtonProps>`
   cursor: pointer;
   transition: all 0.2s ease;
   transform: ${(props) => (props.pushed ? `scale(0.9)` : `scale(1)`)};
+  -webkit-tap-highlight-color: transparent;
+
+  &.click {
+    animation: scaleAnimation 0.1s ease infinite alternate;
+  }
+}
+
+@keyframes scaleAnimation {
+  0% {
+    transform: scale(1); /* Initial scale */
+  }
+  100% {
+    transform: scale(0.9); /* Scale to 1.5 times */
+  }
+}
 `;
 
 export default CircleButton;

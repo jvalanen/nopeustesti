@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import CircleButton from "./CircleButton";
 import { GameButtonColor } from "./main";
 
@@ -9,10 +9,18 @@ interface GameButtonProps {
 
 function GameButton({ lightedUp, buttonColor }: GameButtonProps) {
   const [isPushed, setIsPushed] = useState(false);
+  const [className, setClassname] = useState("");
 
   const style = {
     display: "inline-block",
     margin: "10px",
+  };
+
+  const handleClick = () => {
+    setClassname("click");
+    setTimeout(() => {
+      setClassname("");
+    }, 100);
   };
 
   const handleMouseDown = () => {
@@ -26,6 +34,8 @@ function GameButton({ lightedUp, buttonColor }: GameButtonProps) {
   return (
     <div style={style}>
       <CircleButton
+        className={className}
+        onClick={handleClick}
         buttonColor={buttonColor}
         lightedUp={lightedUp}
         pushed={isPushed}
