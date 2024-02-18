@@ -2,8 +2,8 @@ import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
 
-const INITIAL_TICK_INTERVAL = 2000;
-const SPEED_UP_INTERVAL = 0.99;
+const INITIAL_TICK_INTERVAL = 1500;
+const SPEED_UP_INTERVAL = 0.985;
 
 export enum GameButtonColor {
   Red = "red",
@@ -44,7 +44,7 @@ const sendTick = (prevColor: GameButtonColor) => {
 const scheduleTick = (prevColor: GameButtonColor, intervalInMs: number) => {
   setTimeout(() => {
     const nextColor = sendTick(prevColor);
-    scheduleTick(nextColor, intervalInMs * SPEED_UP_INTERVAL);
+    scheduleTick(nextColor, (intervalInMs - 150) * SPEED_UP_INTERVAL + 150);
   }, intervalInMs);
 };
 
