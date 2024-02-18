@@ -10,17 +10,18 @@ interface CircleButtonProps
 }
 
 const buttonColors = {
-  red: ["#400000", "#FF6347"],
-  blue: ["#000040", "#ADD8E6"],
-  green: ["#004000", "#90EE90"],
-  yellow: ["#806000", "#FFFF00"],
+  // [dark/off, light/on]
+  red: ["#4C0033", "#E80F88"],
+  blue: ["#1B1A55", "#46C2CB"],
+  green: ["#092635", "#9EC8B9"],
+  yellow: ["#3E065F", "#8E05C2"],
 };
 
 // Create the styled button component
 const CircleButton = styled.button<CircleButtonProps>`
   width: 150px;
   height: 150px;
-  border: 2px solid black;
+  border: 2px solid #070F2B;
   border-radius: 50%;
   background-color: ${(props) =>
     buttonColors[props.buttonColor][props.lightedUp ? 1 : 0]};
