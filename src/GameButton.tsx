@@ -1,16 +1,35 @@
-import "./GameButton.css";
+import React, { useState } from "react";
+import CircleButton from "./CircleButton";
 import { GameButtonColor } from "./main";
 
 interface GameButtonProps {
   lightedUp: boolean;
-  color: GameButtonColor;
+  buttonColor: GameButtonColor;
 }
 
-function GameButton({ lightedUp, color }: GameButtonProps) {
+function GameButton({ lightedUp, buttonColor }: GameButtonProps) {
+  const [isPushed, setIsPushed] = useState(false);
+
+  const handleMouseDown = () => {
+    setIsPushed(true);
+  };
+
+  const handleMouseUp = () => {
+    setIsPushed(false);
+  };
+
   return (
-    <div>
-      <div>_{lightedUp && color}_</div>
-    </div>
+    <>
+      <div></div>
+      <CircleButton
+        buttonColor={buttonColor}
+        pushed={isPushed}
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
+      >
+        _{lightedUp && buttonColor}_
+      </CircleButton>
+    </>
   );
 }
 

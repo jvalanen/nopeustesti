@@ -35,8 +35,9 @@ function App() {
       {Object.values(GameButtonColor).map((buttonColor) => {
         return (
           <GameButton
+            key={buttonColor}
             lightedUp={lightedUp == buttonColor}
-            color={buttonColor}
+            buttonColor={buttonColor}
           />
         );
       })}
