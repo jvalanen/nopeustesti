@@ -10,6 +10,11 @@ interface GameButtonProps {
 function GameButton({ lightedUp, buttonColor }: GameButtonProps) {
   const [isPushed, setIsPushed] = useState(false);
 
+  const style = {
+    display: "inline-block",
+    margin: "10px",
+  };
+
   const handleMouseDown = () => {
     setIsPushed(true);
   };
@@ -19,17 +24,15 @@ function GameButton({ lightedUp, buttonColor }: GameButtonProps) {
   };
 
   return (
-    <>
-      <div></div>
+    <div style={style}>
       <CircleButton
         buttonColor={buttonColor}
+        lightedUp={lightedUp}
         pushed={isPushed}
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
-      >
-        _{lightedUp && buttonColor}_
-      </CircleButton>
-    </>
+      ></CircleButton>
+    </div>
   );
 }
 

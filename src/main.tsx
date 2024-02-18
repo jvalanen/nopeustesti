@@ -2,8 +2,8 @@ import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
 
-const INITIAL_TICK_INTERVAL = 1000;
-const SPEED_UP_INTERVAL = 1;
+const INITIAL_TICK_INTERVAL = 2000;
+const SPEED_UP_INTERVAL = 0.99;
 
 export enum GameButtonColor {
   Red = "red",
