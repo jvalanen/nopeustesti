@@ -1,0 +1,46 @@
+name: Version and release to surge.sh
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Specify version"
+        required: true
+        type: string
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Build
+        run: yarn build
+
+      - name: Update version using Yarn
+        run: |
+          git config user.email "<>"
+          git config user.name "GitHub Actions Bot"
+          yarn version --new-version ${{ github.event.inputs.version }}
+
+      - name: Push version update commit
+        run: git push origin HEAD --follow-tags
+
+      - name: Install surge
+        run: yarn global add surge
+      - name: Deploy to surge
+        run: surge --project ./dist --domain nopeustesti-${{ github.event.inputs.version }}.surge.sh
+        env:
+          SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}

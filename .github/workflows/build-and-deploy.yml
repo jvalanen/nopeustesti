@@ -1,0 +1,30 @@
+name: Build and deploy
+
+on: [push]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Build
+        run: yarn build
+
+      - name: Install surge
+        run: yarn global add surge
+      - name: Deploy to surge
+        run: surge --project ./dist --domain nopeustesti-dev.surge.sh
+        env:
+          SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
