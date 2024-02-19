@@ -5,13 +5,18 @@ import { GameButtonColor } from "./main";
 interface GameButtonProps {
   lightedUp: boolean;
   buttonColor: GameButtonColor;
+  onPress: Function;
 }
 
-function GameButton({ lightedUp, buttonColor }: GameButtonProps) {
+function GameButton({ lightedUp, buttonColor, onPress }: GameButtonProps) {
   const [isPushed, setIsPushed] = useState(false);
   const [className, setClassname] = useState("");
 
   const handleClick = () => {
+    /* Notify button press to parent */
+    onPress(buttonColor);
+
+    /* Play animation */
     setClassname("click");
     setTimeout(() => {
       setClassname("");
@@ -39,7 +44,7 @@ function GameButton({ lightedUp, buttonColor }: GameButtonProps) {
         buttonColor={buttonColor}
         lightedUp={lightedUp}
         pushed={isPushed}
-        onTouchMove={handleClick}
+        onTouchStart={handleClick}
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
       ></CircleButton>

@@ -3,6 +3,7 @@ import GameButton from "./GameButton";
 import { GameButtonColor, TickEvent } from "./main.tsx";
 
 function App() {
+  const [score, setScore]: [number, Function] = useState(0);
   const [playQueue, setPlayQueue]: [GameButtonColor[], Function] = useState([]);
   const [lightedUp, setLightedUp] = useState(Object.values(GameButtonColor)[0]);
 
@@ -13,6 +14,20 @@ function App() {
       return playQueue;
     });
   }, []);
+
+  const handleGameButtonPress = useCallback(
+    (pressedColor: GameButtonColor) => {
+      const correctPress = playQueue[0];
+      if (pressedColor == correctPress) {
+        playQueue.shift();
+        setPlayQueue(playQueue);
+        setScore((prevScore: number) => prevScore + 1);
+        return;
+      }
+      alert("Game ended");
+    },
+    [playQueue]
+  );
 
   useEffect(() => {
     setLightedUp(playQueue[playQueue.length - 1]);
@@ -28,7 +43,7 @@ function App() {
 
   return (
     <div>
-      <div>PlayQueue: {playQueue.length}</div>
+      <div>Score: {score}</div>
 
       {/* Render buttons */}
       {Object.values(GameButtonColor).map((buttonColor) => {
@@ -37,6 +52,7 @@ function App() {
             key={buttonColor}
             lightedUp={lightedUp == buttonColor}
             buttonColor={buttonColor}
+            onPress={handleGameButtonPress}
           />
         );
       })}
