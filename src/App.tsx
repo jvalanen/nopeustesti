@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useState } from "react";
-import "./App.css";
 import GameButton from "./GameButton";
 import { GameButtonColor, TickEvent } from "./main.tsx";
 
@@ -7,7 +6,7 @@ function App() {
   const [playQueue, setPlayQueue]: [GameButtonColor[], Function] = useState([]);
   const [lightedUp, setLightedUp] = useState(Object.values(GameButtonColor)[0]);
 
-  const style: object = { "min-width": "700px" };
+  const style: object = { "min-width": "650px" };
 
   const handleTick = useCallback((event: TickEvent) => {
     setPlayQueue((prevPlayQueue: GameButtonColor[]) => {

@@ -19,8 +19,8 @@ const buttonColors = {
 
 // Create the styled button component
 const CircleButton = styled.button<CircleButtonProps>`
-  width: 150px;
-  height: 150px;
+  width: 20vw;
+  height: 20vw;
   border: 2px solid #070F2B;
   border-radius: 50%;
   background-color: ${(props) =>
