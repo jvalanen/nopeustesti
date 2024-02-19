@@ -6,8 +6,6 @@ function App() {
   const [playQueue, setPlayQueue]: [GameButtonColor[], Function] = useState([]);
   const [lightedUp, setLightedUp] = useState(Object.values(GameButtonColor)[0]);
 
-  const style: object = { "min-width": "650px" };
-
   const handleTick = useCallback((event: TickEvent) => {
     setPlayQueue((prevPlayQueue: GameButtonColor[]) => {
       const playQueue = [...prevPlayQueue];
@@ -29,7 +27,7 @@ function App() {
   }, [handleTick]);
 
   return (
-    <div style={style}>
+    <div>
       <div>PlayQueue: {playQueue.length}</div>
 
       {/* Render buttons */}
