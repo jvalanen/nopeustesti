@@ -9,7 +9,6 @@ interface GameButtonProps {
 }
 
 function GameButton({ lightedUp, buttonColor, onPress }: GameButtonProps) {
-  const [isPushed, setIsPushed] = useState(false);
   const [className, setClassname] = useState("");
 
   const handleClick = () => {
@@ -21,14 +20,6 @@ function GameButton({ lightedUp, buttonColor, onPress }: GameButtonProps) {
     setTimeout(() => {
       setClassname("");
     }, 100);
-  };
-
-  const handleMouseDown = () => {
-    setIsPushed(true);
-  };
-
-  const handleMouseUp = () => {
-    setIsPushed(false);
   };
 
   return (
@@ -43,10 +34,7 @@ function GameButton({ lightedUp, buttonColor, onPress }: GameButtonProps) {
         onClick={handleClick}
         buttonColor={buttonColor}
         lightedUp={lightedUp}
-        pushed={isPushed}
         onTouchStart={handleClick}
-        onMouseDown={handleMouseDown}
-        onMouseUp={handleMouseUp}
       ></CircleButton>
     </div>
   );

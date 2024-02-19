@@ -4,7 +4,6 @@ import { GameButtonColor } from "./main";
 // Define the props interface
 interface CircleButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  pushed: boolean;
   buttonColor: GameButtonColor;
   lightedUp: boolean;
 }
@@ -29,7 +28,6 @@ const CircleButton = styled.button<CircleButtonProps>`
     buttonColors[props.buttonColor][props.lightedUp ? 1 : 0]};
   cursor: pointer;
   transition: all 0.2s ease;
-  transform: ${(props) => (props.pushed ? `scale(0.9)` : `scale(1)`)};
   -webkit-tap-highlight-color: transparent;
 
   &.click {
