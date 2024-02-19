@@ -8,8 +8,11 @@ on:
         required: true
         type: string
 
+env:
+  VERSION: ${{ github.event.inputs.version }}
+
 jobs:
-  publish:
+  release:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -33,7 +36,7 @@ jobs:
         run: |
           git config user.email "<>"
           git config user.name "GitHub Actions Bot"
-          yarn version --new-version ${{ github.event.inputs.version }}
+          yarn version --new-version $VERSION
 
       - name: Push version update commit
         run: git push origin HEAD --follow-tags
@@ -41,6 +44,6 @@ jobs:
       - name: Install surge
         run: yarn global add surge
       - name: Deploy to surge
-        run: surge --project ./dist --domain nopeustesti-${{ github.event.inputs.version }}.surge.sh
+        run: surge --project ./dist --domain nopeustesti-${VERSION//./-}.surge.sh
         env:
           SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
