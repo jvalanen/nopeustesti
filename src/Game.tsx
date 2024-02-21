@@ -9,9 +9,8 @@ interface GameProps {
 function Game({ onGameEnd }: GameProps) {
   const [score, setScore]: [number, Function] = useState(0);
   const [playQueue, setPlayQueue]: [GameButtonColor[], Function] = useState([]);
-  const [lightedUp, setLightedUp]: [GameButtonColor, Function] = useState(
-    Object.values(GameButtonColor)[0]
-  );
+  const [lightedUp, setLightedUp]: [GameButtonColor | null, Function] =
+    useState(null);
 
   const handleTick = useCallback((event: TickEvent) => {
     setPlayQueue((prevPlayQueue: GameButtonColor[]) => {
