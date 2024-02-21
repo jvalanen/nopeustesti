@@ -5,7 +5,7 @@ import { GameButtonColor } from "./main";
 interface GameButtonProps {
   lightedUp: boolean;
   buttonColor: GameButtonColor;
-  onPress: Function;
+  onPress: (pressedColor: GameButtonColor) => void;
 }
 
 function GameButton({ lightedUp, buttonColor, onPress }: GameButtonProps) {
