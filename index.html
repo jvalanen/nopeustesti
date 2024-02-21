@@ -5,8 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nopeustesti</title>
   </head>
+
+  <style>
+    .play-container {
+      height: 100px;
+    }
+
+    #please-rotate-banner {
+      display: none;
+      height: 100px;
+      background-color: red;
+    }
+
+    .play-button {
+      padding: 50px;
+      width: 100px;
+      border: solid black 2px;
+    }
+
+    @media (max-width: 650px) {
+      #please-rotate-banner {
+        display: block;
+      }
+      .play-button {
+        display: none;
+      }
+    }
+  </style>
+
   <body>
-    Welcome to Nopeustesti!
-    <a href="/game/">Play the game</a>
+    <div class="content-container">
+      <h2>Welcome to play some Nopeustesti!</h2>
+
+      <p>This site demonstrates the skills of Jouni Alanen.</p>
+    </div>
+
+    <div class="play-container">
+      <div id="please-rotate-banner">
+        <p>
+          Please make your screen wider e.g. by rotating your screen to
+          landscape.
+        </p>
+      </div>
+
+      <a href="/game/">
+        <div class="play-button">Play the game</div>
+      </a>
+
+      <p>Source code of the game is found in <a href="https://github.com/jvalanen/nopeustesti">Github</a></a></p>
+    </div>
   </body>
 </html>
