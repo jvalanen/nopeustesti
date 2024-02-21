@@ -3,7 +3,7 @@ interface EndModalProps {
   onTryAgain: () => void;
 }
 
-function EndModal({ score, onTryAgain }: EndModalProps) {
+function EndModal({ score /* , onTryAgain */ }: EndModalProps) {
   return (
     <div>
       <div>FINAL SCORE</div>
@@ -12,10 +12,11 @@ function EndModal({ score, onTryAgain }: EndModalProps) {
       <br />
       <br />
       <br />
-      <div onClick={onTryAgain} style={{ cursor: "pointer" }}>
+      {/* <div onClick={onTryAgain} style={{ cursor: "pointer" }}>
         YRITÄ UUDELLEEN
       </div>
       <br />
+      */}
       <a href="/">
         <div>PALAA ETUSIVULLE</div>
       </a>
