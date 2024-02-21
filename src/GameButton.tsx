@@ -10,16 +10,24 @@ interface GameButtonProps {
 
 function GameButton({ lightedUp, buttonColor, onPress }: GameButtonProps) {
   const [className, setClassname] = useState("");
+  const [isPressed, setIsPressed] = useState(false);
 
   const handleClick = () => {
-    /* Notify button press to parent */
-    onPress(buttonColor);
+    if (!isPressed) {
+      setIsPressed(true);
+      setTimeout(() => {
+        setIsPressed(false);
+      }, 500);
 
-    /* Play animation */
-    setClassname("click");
-    setTimeout(() => {
-      setClassname("");
-    }, 100);
+      /* Notify button press to parent */
+      onPress(buttonColor);
+
+      /* Play animation */
+      setClassname("click");
+      setTimeout(() => {
+        setClassname("");
+      }, 100);
+    }
   };
 
   return (
