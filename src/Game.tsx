@@ -48,9 +48,11 @@ function Game({ onGameEnd }: GameProps) {
   }, [handleTick]);
 
   return (
-    <div className="grid grid-rows-2 flex items-center border-4 border-slate-300 py-6">
-      <div className="justify-self-center border-4 mb-5">
-        <ScoreCounter score={score} />
+    <div className="w-full grid grid-rows-2">
+      <div className="justify-self-center mb-5">
+        <div className="border-4 p-8">
+          <ScoreCounter score={score} />
+        </div>
       </div>
 
       <div className="justify-self-center">

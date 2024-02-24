@@ -1,25 +1,20 @@
+import ScoreCounter from "./ScoreCounter";
+
 interface EndModalProps {
   score: number;
-  onTryAgain: () => void;
 }
 
-function EndModal({ score /* , onTryAgain */ }: EndModalProps) {
+function EndModal({ score }: EndModalProps) {
   return (
-    <div>
-      <div>FINAL SCORE</div>
-      <br />
-      <div>{score}</div>
-      <br />
-      <br />
-      <br />
-      {/* <div onClick={onTryAgain} style={{ cursor: "pointer" }}>
-        YRITÄ UUDELLEEN
+    <div className="w-full border-2 flex flex-col items-center py-6">
+      <div className="py-8 text-5xl md:text-6xl font-bold">Game over!</div>
+      <div className="text-center">
+        <p className="text-xl md:text-2xl p-8">Your final score was</p>
+        <ScoreCounter score={score} />
       </div>
-      <br />
-      */}
-      <a href="/">
-        <div>PALAA ETUSIVULLE</div>
-      </a>
+      <div className="mt-16 underline">
+        <a href="/">Back to main page</a>
+      </div>
     </div>
   );
 }

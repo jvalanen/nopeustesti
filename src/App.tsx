@@ -11,14 +11,14 @@ function App() {
     setFinalScore(score);
   };
 
-  const handleTryAgain = () => {
-    setGameEnd(false);
-  };
-
-  return gameEnd ? (
-    <EndModal score={finalScore} onTryAgain={handleTryAgain} />
-  ) : (
-    <Game onGameEnd={handleGameEnd} />
+  return (
+    <div className="w-full flex items-center border-4 border-slate-300 py-6">
+      {gameEnd ? (
+        <EndModal score={finalScore} />
+      ) : (
+        <Game onGameEnd={handleGameEnd} />
+      )}
+    </div>
   );
 }
 
