@@ -6,42 +6,26 @@
     <title>Nopeustesti</title>
   </head>
 
-  <style>
-    #please-rotate-banner {
-      display: none;
-    }
-
-    #play-button {
-      display: block;
-    }
-
-    @media (max-width: 650px) {
-      #please-rotate-banner {
-        display: block;
-      }
-      #play-button {
-        display: none;
-      }
-    }
-  </style>
-
   <body>
-    <div class="flex justify-center h-screen bg-gray-50 py-8">
-      <div class="prose bg-white border-2 p-4">
+    <div class="h-screen w-full bg-gray-50">
+      <div class="prose bg-white border-2 p-8 m-auto">
         <h2>Welcome to play some Nopeustesti!</h2>
 
-        <p>This site demonstrates the skills of Jouni Alanen.</p>
+        <p>This is a demonstration of the skills of Jouni Alanen.</p>
 
-        <div id="please-rotate-banner" class="max-w-80 bg-red-400">
-          <p>
-            Please make your screen wider e.g. by rotating your screen to
-            landscape.
-          </p>
+        <div
+          class="block md:hidden bg-red-400 pl-8 p-4 rounded max-w-80 font-semibold"
+        >
+          Please rotate your screen to play!
         </div>
 
-        <a href="/game/">
-          <div id="play-button" class="px-6 py-6">Play the game</div>
-        </a>
+        <div class="hidden md:block p-8">
+          <a
+            href="/game/"
+            class="no-underline bg-gray-300 rounded-full text-lg font-semibold py-4 px-8 max-w-60"
+            >Play the game in full window
+          </a>
+        </div>
 
         <p>
           Source code of the game is found in

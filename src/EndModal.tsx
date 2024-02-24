@@ -6,7 +6,7 @@ interface EndModalProps {
 
 function EndModal({ score }: EndModalProps) {
   return (
-    <div className="w-full border-2 flex flex-col items-center py-6">
+    <div className="w-full flex flex-col items-center py-6">
       <div className="py-8 text-5xl md:text-6xl font-bold">Game over!</div>
       <div className="text-center">
         <p className="text-xl md:text-2xl p-8">Your final score was</p>
