@@ -1,6 +1,6 @@
 import { useState } from "react";
-import CircleButton from "./CircleButton";
 import { GameButtonColor } from "./main";
+import "./GameButton.css";
 
 interface GameButtonProps {
   lightedUp: boolean;
@@ -9,7 +9,7 @@ interface GameButtonProps {
 }
 
 function GameButton({ lightedUp, buttonColor, onPress }: GameButtonProps) {
-  const [className, setClassname] = useState("");
+  const [animation, setAnimation] = useState("");
   const [isPressed, setIsPressed] = useState(false);
 
   const handleClick = () => {
@@ -23,27 +23,23 @@ function GameButton({ lightedUp, buttonColor, onPress }: GameButtonProps) {
       onPress(buttonColor);
 
       /* Play animation */
-      setClassname("click");
+      setAnimation("click-animation");
       setTimeout(() => {
-        setClassname("");
+        setAnimation("");
       }, 100);
     }
   };
 
   return (
-    <div
-      style={{
-        display: "inline-block",
-        margin: "10px",
-      }}
-    >
-      <CircleButton
-        className={className}
+    <div className="game-button-container">
+      <button
+        className={`
+          circle-button
+          ${buttonColor}-${lightedUp ? "on" : "off"}
+          ${animation}`}
         onClick={handleClick}
-        buttonColor={buttonColor}
-        lightedUp={lightedUp}
         onTouchStart={handleClick}
-      ></CircleButton>
+      ></button>
     </div>
   );
 }

@@ -1,0 +1,96 @@
+.game-button-container {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.circle-button {
+  width: 20vw;
+  max-width: 15rem;
+  height: 20vw;
+  max-height: 15rem;
+  border: 2px solid #070f2b;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.circle-button.click-animation {
+  animation: scaleAnimation 0.1s ease infinite alternate;
+}
+
+@keyframes scaleAnimation {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.9);
+  }
+}
+
+.red-off {
+  background-color: #4c0033;
+}
+.red-on {
+  background-color: #e80f88;
+}
+
+.blue-off {
+  background-color: #1b1a55;
+}
+.blue-on {
+  background-color: #00fff5;
+}
+
+.green-off {
+  background-color: #3b5249;
+}
+.green-on {
+  background-color: #bef992;
+}
+
+.yellow-off {
+  background-color: #443737;
+}
+.yellow-on {
+  background-color: #ffd700;
+}
+
+.purple-off {
+  background-color: #3e065f;
+}
+.purple-on {
+  background-color: #8e05c2;
+}
+
+/*
+
+// Create the styled button component
+const CircleButton = styled.button<CircleButtonProps>`
+  width: 20vw;
+  max-width: 250px;
+  height: 20vw;
+  max-height: 250px;
+  border: 2px solid #070F2B;
+  border-radius: 50%;
+  background-color: ${(props) =>
+    buttonColors[props.buttonColor][props.lightedUp ? 1 : 0]};
+  cursor: pointer;
+  transition: all 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+
+  &.click {
+    animation: scaleAnimation 0.1s ease infinite alternate;
+  }
+}
+
+
+@keyframes scaleAnimation {
+  0% {
+    transform: scale(1); // Initial scale
+  }
+  100% {
+    transform: scale(0.9); // Scale to 1.5 times
+  }
+}
+*/

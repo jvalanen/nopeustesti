@@ -11,8 +11,6 @@ export enum GameButtonColor {
   Green = "green",
   Yellow = "yellow",
   // Purple = "purple",
-  // Black = "black",
-  // Grey = "grey",
 }
 
 export type TickEvent = CustomEvent<{
