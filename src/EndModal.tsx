@@ -13,7 +13,7 @@ function EndModal({ score }: EndModalProps) {
         <ScoreCounter score={score} />
       </div>
       <div className="mt-16 underline">
-        <a href="/">Back to main page</a>
+        <a href="/">Back to the main page</a>
       </div>
     </div>
   );
