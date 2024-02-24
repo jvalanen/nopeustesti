@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import GameButton from "./GameButton";
 import { GameButtonColor, TickEvent } from "./main.tsx";
+import ScoreCounter from "./ScoreCounter.tsx";
 
 interface GameProps {
   onGameEnd: (score: number) => void;
@@ -47,20 +48,24 @@ function Game({ onGameEnd }: GameProps) {
   }, [handleTick]);
 
   return (
-    <div>
-      <div>Score: {score}</div>
+    <div className="grid grid-rows-2 flex items-center border-4 border-slate-300 py-6">
+      <div className="justify-self-center border-4 mb-5">
+        <ScoreCounter score={score} />
+      </div>
 
-      {/* Render buttons */}
-      {Object.values(GameButtonColor).map((buttonColor) => {
-        return (
-          <GameButton
-            key={buttonColor}
-            lightedUp={lightedUp == buttonColor}
-            buttonColor={buttonColor}
-            onPress={handleGameButtonPress}
-          />
-        );
-      })}
+      <div className="justify-self-center">
+        {/* Render buttons */}
+        {Object.values(GameButtonColor).map((buttonColor) => {
+          return (
+            <GameButton
+              key={buttonColor}
+              lightedUp={lightedUp == buttonColor}
+              buttonColor={buttonColor}
+              onPress={handleGameButtonPress}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 }
