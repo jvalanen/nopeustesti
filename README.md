@@ -1,11 +1,23 @@
 # Nopeustesti - Speden Spelit
 
-## Run
+## Install and run
 
 ```
 yarn
 yarn dev
 ```
+
+## Deploy
+
+Automatic deploy on every push to <https://nopeustesti-dev.surge.sh>
+
+Use manually triggered Github Action to bump the version and make a release to version specific domain e.g. <https://nopeustesti-0-1-0.surge.sh>
+
+## Customization
+
+Button order and colors can be set by modifying the `GameButtonColor` enum.
+
+Initial speed and acceleration speed can be modified with `INITIAL_TICK_INTERVAL` and `SPEED_UP_INTERVAL`
 
 ## Specs
 
