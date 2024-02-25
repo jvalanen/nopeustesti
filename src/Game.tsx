@@ -49,13 +49,13 @@ function Game({ onGameEnd }: GameProps) {
 
   return (
     <div className="w-full grid grid-rows-3">
-      <div className="justify-self-center mb-5 row-span-1">
+      <div className="justify-self-center row-span-1">
         <div className="border-4 p-6">
           <ScoreCounter score={score} />
         </div>
       </div>
 
-      <div className="justify-self-center row-span-2">
+      <div className="justify-self-center row-span-2 pt-6">
         {/* Render buttons */}
         {Object.values(GameButtonColor).map((buttonColor) => {
           return (
