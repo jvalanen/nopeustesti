@@ -31,7 +31,7 @@ function GameButton({ lightedUp, buttonColor, onPress }: GameButtonProps) {
   };
 
   return (
-    <div className="game-button-container">
+    <div className="inline-block p-1">
       <button
         className={`
           circle-button
