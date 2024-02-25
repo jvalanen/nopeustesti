@@ -1,5 +1,7 @@
 # Nopeustesti - Speden Spelit
 
+Release 1.0.0 available in <https://nopeustesti.surge.sh>
+
 ## Install and run
 
 ```
@@ -15,7 +17,7 @@ Use manually triggered Github Action to bump the version and make a release to v
 
 ## Customization
 
-Button order and colors can be set by modifying the `GameButtonColor` enum.
+Button order, colors and quantity can be set by modifying the `GameButtonColor` enum. Although `GameButton.css` needs to be adjusted separately to support different colors and quantities.
 
 Initial speed and acceleration speed can be modified with `INITIAL_TICK_INTERVAL` and `SPEED_UP_INTERVAL`
 
@@ -39,4 +41,3 @@ Score:
 1. Player gets a point with each correct press of a button
 2. Score is shown by the counter
 3. When the game ends the score is shown
-4. When the game ends all the buttons light up

@@ -10,7 +10,7 @@ export enum GameButtonColor {
   Blue = "blue",
   Green = "green",
   Yellow = "yellow",
-  // Purple = "purple",
+  // Purple = "purple", /* Optional color */
 }
 
 export type TickEvent = CustomEvent<{
@@ -22,14 +22,15 @@ const pickRandomColor = (colors: GameButtonColor[]) => {
 };
 
 const pickNextColor = (prevColor: GameButtonColor) => {
-  // Prevent picking the same color again
+  /* Prevent picking the same color again */
   const nonSameColors = Object.values(GameButtonColor).filter((color) => {
     return color !== prevColor;
   });
-  // Randomly pick one
+  /* Randomly pick one */
   return pickRandomColor(nonSameColors);
 };
 
+/* Game's buttons light up is triggered by this tick event */
 const sendTick = (prevColor: GameButtonColor) => {
   const nextColor = pickNextColor(prevColor);
   const tick: TickEvent = new CustomEvent("tick", {
@@ -39,6 +40,7 @@ const sendTick = (prevColor: GameButtonColor) => {
   return nextColor;
 };
 
+/* Next tick is scheduled right after the previous one is sent */
 const scheduleTick = (prevColor: GameButtonColor, intervalInMs: number) => {
   setTimeout(() => {
     const nextColor = sendTick(prevColor);
@@ -46,9 +48,11 @@ const scheduleTick = (prevColor: GameButtonColor, intervalInMs: number) => {
   }, intervalInMs);
 };
 
+/* Start the game by scheduling the first tick */
 scheduleTick(
   pickRandomColor(Object.values(GameButtonColor)),
   INITIAL_TICK_INTERVAL
 );
 
+/* Render the layout */
 ReactDOM.createRoot(document.getElementById("root")!).render(<App />);

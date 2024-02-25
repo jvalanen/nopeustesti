@@ -14,6 +14,7 @@ function GameButton({ lightedUp, buttonColor, onPress }: GameButtonProps) {
 
   const handleClick = () => {
     if (!isPressed) {
+      /* Handle possible concurrently triggered onClick and onTouchStart events */
       setIsPressed(true);
       setTimeout(() => {
         setIsPressed(false);
